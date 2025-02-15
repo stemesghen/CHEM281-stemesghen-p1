@@ -25,4 +25,4 @@ jobs:
     - name: Print Output from Host
       run: |
         echo "Formic Acid MOPAC Output:"
-        cat ${{ github.workspace }}/output
+        cat ${{ github.workspace }}/output/
