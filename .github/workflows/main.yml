@@ -9,9 +9,6 @@ jobs:
     - name: Clone MOPAC repository
       uses: actions/checkout@v3
       
-    - name: Create output directory on host
-      run: mkdir -p ${{ github.workspace }}/output
-      
     - name: Docker Image BUILD
       run: docker build -t mopac-test .
 
@@ -24,5 +21,5 @@ jobs:
     - name: Print output from host
       run: |
         echo "Formic Acid MOPAC Output:"
-        ls -l ${{ github.workspace }}/output
-        cat ${{ github.workspace }}/output/formic_acid.out
+        ls -l ${{ github.workspace }}/
+        cat ${{ github.workspace }}/formic_acid.out
