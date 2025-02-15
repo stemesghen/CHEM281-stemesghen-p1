@@ -18,9 +18,12 @@ RUN apt-get update && apt-get install -y \
     cmake .. && \
     make && \
     make install && \
+#clean up
     cd ../.. && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp*
+    apt-get purge -y --auto-remove build-essential cmake git && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp* && \
+    rm -rf mopac
  
 
 # Set working directory for inputs
