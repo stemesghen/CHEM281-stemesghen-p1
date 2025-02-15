@@ -1,25 +1,29 @@
 name: Github Actions for MOPAC Docker Image
-on: push
+on:
+  push:
 
 jobs:
   build-and-test:
     runs-on: ubuntu-22.04
 
     steps:
-    - name: Clone MOPAC repository
+    - name: Checkout MOPAC repository
       uses: actions/checkout@v3
-      
-    - name: Docker Image BUILD
+
+    - name: Build Docker Image
       run: docker build -t mopac-test .
 
-    - name: Run MOPAC INPUT test on formic_acid
-      run: docker run --rm -v ${{ github.workspace }}:/input mopac-test formic_acid.mop
+    - name: Run MOPAC Input Test on formic_acid
+      run: |
+        mkdir -p output
+        docker run --rm -v ${{ github.workspace }}/output:/output mopac-test formic_acid.mop
 
-    - name: test output
-      run: cat input/formic_acid.out
+    - name: Test Output
+      run: |
+        echo "Checking output directory:"
+        ls -l ${{ github.workspace }}/output
 
-    - name: Print output from host
+    - name: Print Output from Host
       run: |
         echo "Formic Acid MOPAC Output:"
-        ls -l ${{ github.workspace }}/
-        cat ${{ github.workspace }}/formic_acid.out
+        cat ${{ github.workspace }}/output/formic_acid.out
