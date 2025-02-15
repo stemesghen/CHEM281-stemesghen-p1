@@ -16,4 +16,4 @@ jobs:
       run: docker run -v ${{ github.workspace }}:/input mopac-test formic_acid.mop
 
     - name: test output
-      run: cat formic_acid.out
+      run: cat input/formic_acid.out
