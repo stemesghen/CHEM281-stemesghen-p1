@@ -15,14 +15,14 @@ jobs:
 
     - name: Run MOPAC Input Test on formic_acid
       run: |
-        docker run --rm -v ${{ github.workspace }}/input:/input -v ${{ github.workspace }}/output:/output mopac-test /input/formic_acid.mop
+        docker run --rm -v ${{ github.workspace }}/input:/input -v ${{ github.workspace }}/input:/input mopac-test /input/formic_acid.mop
 
     - name: Test Output
       run: |
         echo "Checking output directory:"
-        ls -l ${{ github.workspace }}/output
+        ls -l ${{ github.workspace }}/input
 
     - name: Print Output from Host
       run: |
         echo "Formic Acid MOPAC Output:"
-        cat ${{ github.workspace }}/output/formic_acid.out
+        cat ${{ github.workspace }}/input/formic_acid.out
