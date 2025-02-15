@@ -15,7 +15,6 @@ jobs:
 
     - name: Run MOPAC Input Test on formic_acid
       run: |
-        mkdir -p output
         docker run --rm -v ${{ github.workspace }}/output:/output mopac-test formic_acid.mop
 
     - name: Test Output
